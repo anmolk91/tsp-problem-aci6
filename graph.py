@@ -57,7 +57,7 @@ class Graph:
             # find a node with the lowest value of f() - evaluation function
             for v in open_list:
                 if n == None or (v in distance_from_source and n in distance_from_source and distance_from_source[v] + h[v] < distance_from_source[n] + h[n]):
-                    n = v;
+                    n = v
         
             if n == None:
                 print('Path does not exist!')
