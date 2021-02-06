@@ -10,7 +10,7 @@ class DistanceCalculator :
         
         data = self.read_input('inputACI6.txt')
         self.distanceGraph = Graph(data['vertices'], data['edges'])
-        self.distanceGraph.find_path('A', 'G', data['h_val'])
+        self.distanceGraph.find_path(data['source'], data['destination'], data['h_val'])
 
     def read_input(self, input_file_name):
         """
@@ -33,6 +33,8 @@ class DistanceCalculator :
         vertices = []
         edges = []
         h_val = {}
+        source = ''
+        destination = ''
         for rawData in filter(lambda x: x != '', input_raw_data.split('\n')):
             if ',' in rawData:
                 for vertex in rawData.split(','):
@@ -48,9 +50,16 @@ class DistanceCalculator :
                 h_details = rawData.split('/')
                 if h_details[0].strip() not in  h_val:
                     h_val[h_details[0].strip()] = float(h_details[1])
+            elif 'source' in rawData:
+                source = rawData.split('=')[1].strip()
+            elif 'destination' in rawData:
+                destination = rawData.split('=')[1].strip()
+        print(h_val)
         return {
             'vertices': vertices,
             'edges': edges,
-            'h_val': h_val
+            'h_val': h_val,
+            'source': source,
+            'destination': destination
         }
 
