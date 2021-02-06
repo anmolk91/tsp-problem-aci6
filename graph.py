@@ -14,7 +14,8 @@ class Graph:
         print(self.adjacency_list)
 
     def get_neighbors(self, v):
-            return self.adjacency_list[v]
+            value = self.adjacency_list[v]
+            return value
 
     def generate_adjacency_list(self,  edges): 
         """
@@ -23,9 +24,7 @@ class Graph:
         adjacency_list = {}
         for vertex in self.vertices:
             for sourceEdge in filter(lambda x: x['source'] == vertex, edges):
-                node = {
-                        sourceEdge['destination']: sourceEdge['value']
-                    };
+                node = (sourceEdge['destination'], sourceEdge['value'])
                 if (vertex not in adjacency_list):
                     adjacency_list[vertex] = [node]
                 else:
@@ -57,7 +56,7 @@ class Graph:
 
             # find a node with the lowest value of f() - evaluation function
             for v in open_list:
-                if n == None or distance_from_source[v] + h[v] < distance_from_source[n] + h[n]:
+                if n == None or (v in distance_from_source and n in distance_from_source and distance_from_source[v] + h[v] < distance_from_source[n] + h[n]):
                     n = v;
         
             if n == None:
