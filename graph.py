@@ -11,11 +11,9 @@ class Graph:
         self.vertices = vertices
         self.edges = edges
         self.adjacency_list = self.generate_adjacency_list(edges)
-        print(self.adjacency_list)
 
     def get_neighbors(self, v):
-            value = self.adjacency_list[v]
-            return value
+            return self.adjacency_list[v]
 
     def generate_adjacency_list(self,  edges): 
         """
