@@ -4,13 +4,14 @@ class DistanceCalculator :
 
     edges = []
     vertices = []
-    distanceGraph = None
+    distance_graph = None
 
     def __init__(self, file_name):
         
         data = self.read_input('inputACI6.txt')
-        self.distanceGraph = Graph(data['vertices'], data['edges'])
-        self.distanceGraph.find_path(data['source'], data['destination'], data['h_val'])
+        self.edges = data['edges']
+        self.distance_graph = Graph(data['vertices'], data['edges'])
+        self.calculate_cost(self.distance_graph.find_path(data['source'], data['destination'], data['h_val']))
 
     def read_input(self, input_file_name):
         """
@@ -39,12 +40,13 @@ class DistanceCalculator :
             if ',' in rawData:
                 for vertex in rawData.split(','):
                     vertices.append(vertex.strip())
-            elif rawData.count('/') == 2:
+            elif rawData.count('/') == 3:
                 edgeData = rawData.split('/')
                 edges.append({
                     'source': edgeData[0].strip(),
                     'destination': edgeData[1].strip(),
-                    'value': float(edgeData[2].strip())
+                    'value': float(edgeData[2].strip()),
+                    'cost': float(edgeData[3].strip())
                 })
             elif rawData.count('/') == 1:
                 h_details = rawData.split('/')
@@ -54,7 +56,6 @@ class DistanceCalculator :
                 source = rawData.split('=')[1].strip()
             elif 'destination' in rawData:
                 destination = rawData.split('=')[1].strip()
-        print(h_val)
         return {
             'vertices': vertices,
             'edges': edges,
@@ -63,3 +64,12 @@ class DistanceCalculator :
             'destination': destination
         }
 
+    def calculate_cost(self, path): 
+        edges = self.edges
+        total = 0
+        if path != None:
+            for index in range(len(path) - 1):
+                edge = [x for x in edges if x['source'] == path[index] and x['destination'] == path[index + 1]][0]
+                total += edge['cost']
+
+        print('total = {0}'.format(total))
