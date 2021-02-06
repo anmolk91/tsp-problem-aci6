@@ -1,0 +1,30 @@
+A / B / 3
+A / D / 3
+A / C / 2
+B / A / 3
+B / D / 5
+B / G / 3
+B / C / 4
+C / A / 2
+C / D / 3
+C / B / 4
+D / B / 5
+D / A / 3
+D / G / 2
+D / C / 3
+D / E / 2
+E / G / 3
+E / D / 2
+G / B / 3
+G / D / 2
+G / E / 3
+
+A / 5
+B / 3
+C / 5
+D / 1.5
+E / 1.5
+G / 0
+
+Source: A
+Destination: G

@@ -1,8 +1,3 @@
-# from interpreter import Interpreter
+from distance_calculator import DistanceCalculator
 
-# def driverMethod():
-#     interpretersData = Interpreter()
-#     interpretersData.readApplication()
-    
-
-# driverMethod()
+pharmacyRun = DistanceCalculator('inputACI6.txt')
